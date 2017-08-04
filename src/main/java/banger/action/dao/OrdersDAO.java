@@ -5,7 +5,7 @@ package banger.action.dao;
  */
 public interface OrdersDAO {
 	/***
-	 * yangzhixiang
+	 * yangzhixiangnnnnn
 	 * @return
 	 */
 	int insert();
