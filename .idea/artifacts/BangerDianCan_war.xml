@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="BangerDianCan:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="BangerDianCan-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="BangerDianCan:war exploded" />
+    </root>
+  </artifact>
+</component>
