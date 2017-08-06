@@ -1,7 +1,6 @@
 package banger.action.dao;
 
-/**
- * Created by Administrator on 2017/8/3.
- */
+import banger.action.model.Orders;
+
 public interface OrdersDAO {
 }
