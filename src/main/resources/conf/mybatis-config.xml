@@ -5,7 +5,7 @@
 <configuration>
 
     <typeAliases>
-        <package name="banger.action.entity" />
+        <package name="banger.action.model" />
     </typeAliases>
 
 </configuration>
