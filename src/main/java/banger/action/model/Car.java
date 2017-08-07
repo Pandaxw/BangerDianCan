@@ -6,7 +6,7 @@ public class Car {
     //          加入购物车后用户退出登录购物车失效商品 ：2
     private int id;
 
-    private long carId;
+    private String carId;
 
     private long carBuyerId;
 
@@ -26,13 +26,14 @@ public class Car {
         this.id = id;
     }
 
-    public long getCarId() {
+    public String getCarId() {
         return carId;
     }
 
-    public void setCarId(long carId) {
+    public void setCarId(String carId) {
         this.carId = carId;
     }
+
 
     public long getCarBuyerId() {
         return carBuyerId;
