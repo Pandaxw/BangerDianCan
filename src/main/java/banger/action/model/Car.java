@@ -13,6 +13,8 @@ public class Car {
 
     private Double carProductPrice;
 
+    private int carStatus;
+
     public int getId() {
         return id;
     }
@@ -60,4 +62,14 @@ public class Car {
     public void setCarProductPrice(Double carProductPrice) {
         this.carProductPrice = carProductPrice;
     }
+
+    public int getCarStatus() {
+        return carStatus;
+    }
+
+    public void setCarStatus(int carStatus) {
+        this.carStatus = carStatus;
+    }
+
+
 }
