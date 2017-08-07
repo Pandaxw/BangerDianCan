@@ -3,7 +3,50 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="banger.action.dao.CarDAO">
-
-
+    <resultMap id="BaseResultMap" type="banger.action.model.Car" >
+        <id column="Id" property="id" jdbcType="INTEGER" />
+        <result column="car_id" property="carId" jdbcType="BIGINT" />
+        <result column="car_buyer_id" property="carBuyerId" jdbcType="BIGINT" />
+        <result column="car_product_id" property="carProductId" jdbcType="BIGINT" />
+        <result column="car_product_num" property="carProductNum" jdbcType="INTEGER" />
+        <result column="car_product_price" property="carProductPrice" jdbcType="DOUBLE" />
+        <result column="car_status" property="carStatus" jdbcType="INTEGER" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        Id, car_id, car_buyer_id, car_product_id, car_product_num, car_product_price, car_status
+    </sql>
+    <insert id="insertProduct" parameterType="banger.action.model.Car" >
+        insert into car (Id, car_id, car_buyer_id,
+        car_product_id, car_product_num, car_product_price,
+        car_status)
+        values (#{id,jdbcType=INTEGER}, #{carId,jdbcType=BIGINT}, #{carBuyerId,jdbcType=BIGINT},
+        #{carProductId,jdbcType=BIGINT}, #{carProductNum,jdbcType=INTEGER}, #{carProductPrice,jdbcType=DOUBLE},
+        #{carStatus,jdbcType=INTEGER})
+    </insert>
+    <update id="updateNum" parameterType="banger.action.model.Car" >
+        update car
+        set
+        car_product_num = #{carProductNum,jdbcType=INTEGER},
+        car_product_price = #{carProductPrice,jdbcType=DOUBLE}
+        where  car_product_id = #{carProductId,jdbcType=BIGINT}  and car_buyer_id = #{carBuyerId,jdbcType=BIGINT}
+    </update>
+    <update id="deleteProduct" parameterType="banger.action.model.Car" >
+        update car
+        set
+        car_status = #{carStatus,jdbcType=INTEGER}
+        where  car_product_id = #{carProductId,jdbcType=BIGINT}  and car_buyer_id = #{carBuyerId,jdbcType=BIGINT}
+    </update>
+    <update id="deleteAllProduct" parameterType="banger.action.model.Car" >
+        update car
+        set
+        car_status = #{carStatus,jdbcType=INTEGER}
+        where   car_buyer_id = #{carBuyerId,jdbcType=BIGINT}
+    </update>
+    <select id="selectUserCar" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from car
+        where car_buyer_id = #{carBuyerId,jdbcType=BIGINT} and  car_status = #{carStatus,jdbcType=INTEGER}
+    </select>
 
 </mapper>
