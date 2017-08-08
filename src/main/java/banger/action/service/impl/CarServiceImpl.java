@@ -5,6 +5,7 @@ import banger.action.model.Car;
 import banger.action.model.User;
 import banger.action.service.CarService;
 import banger.action.util.ProductNum;
+import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -45,7 +46,7 @@ public class CarServiceImpl implements CarService{
       productNum.setCarProductNum(car.getCarProductNum());
       productNums.add(productNum);
     }
-    return  pruductNums;
+    return  productNums;
   }
   public int updateProductNum(HttpSession session,long carProductId,int carProductNum){
     User user=(User) session.getAttribute("user");
