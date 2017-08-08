@@ -2,7 +2,9 @@ package banger.action.model;
 
 public class Picture {
     private int id;
-
+    
+    private long productId;
+    
     private int pictureId;
 
     private String pictureAddress;
@@ -15,7 +17,15 @@ public class Picture {
         this.id = id;
     }
 
-    public int getPictureId() {
+    public long getProductId() {
+		return productId;
+	}
+
+	public void setProductId(long productId) {
+		this.productId = productId;
+	}
+
+	public int getPictureId() {
         return pictureId;
     }
 

@@ -2,32 +2,33 @@ package banger.action.model;
 
 import java.util.Date;
 
+/**
+ * 订单实体类
+ */
 public class Orders {
     private int id;
 
-    private long ordersId;
+    private long ordersId;           //订单Id
 
-    private long ordersBuyerId;
+    private long ordersBuyerId;      //买家Id
 
-    private long ordersSellerId;
+    private long ordersSellerId;     //卖家Id
 
-    private String ordersNo;
+    private String ordersAddress;    //订单地址
 
-    private String ordersAddress;
+    private Date ordersTime;         //订单成交时间
 
-    private Date ordersTime;
+    private Date ordersDelieveTime;  //订单配送时间
 
-    private Date ordersDelieveTime;
+    private Date ordersFinishTime;   //订单完成时间
 
-    private Date ordersFinishTime;
+    private Double ordersTotalPrice; //订单总计价格
 
-    private Double ordersTotalPrice;
+    private String ordersPayment;    //付款方式
 
-    private String ordersPayment;
+    private int ordersStatus;        //订单状态
 
-    private int ordersStatus;
-
-    private String ordersComments;
+    private String ordersComments;   //买家备注
 
     public int getId() {
         return id;
@@ -59,14 +60,6 @@ public class Orders {
 
     public void setOrdersSellerId(long ordersSellerId) {
         this.ordersSellerId = ordersSellerId;
-    }
-
-    public String getOrdersNo() {
-        return ordersNo;
-    }
-
-    public void setOrdersNo(String ordersNo) {
-        this.ordersNo = ordersNo == null ? null : ordersNo.trim();
     }
 
     public String getOrdersAddress() {
