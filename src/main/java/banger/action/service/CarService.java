@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 public interface CarService {
-    void addProduct(HttpSession session,long carProductId);
+    void addProduct(HttpSession session,String carProductId);
     List<ProductNum> myCar(HttpSession session);
-    int updateProductNum(HttpSession session,long carProductId,int carProductNum);
+    int updateProductNum(HttpSession session,String carProductId,int carProductNum);
 }

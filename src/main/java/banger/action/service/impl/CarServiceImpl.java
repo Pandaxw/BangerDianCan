@@ -19,7 +19,7 @@ public class CarServiceImpl implements CarService{
   @Resource
   CarDAO carDAO;
   //add  product to car
-  public  void addProduct(HttpSession session, long carProductId){
+  public  void addProduct(HttpSession session, String carProductId){
     User user=(User) session.getAttribute("user");
     long userId=user.getUserId();
     String carid = UUID.randomUUID().toString().replace("-", "");
