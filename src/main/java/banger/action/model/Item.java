@@ -1,15 +1,16 @@
 package banger.action.model;
 
 public class Item {
-    private int id;
+	
+    private int id;      
 
-    private long itemOrderid;
+    private String itemOrderId;   //订单明细表ID
 
-    private long itemProductId;
+    private String itemProductId; //订单明细表菜品ID
 
-    private int itemProductNum;
+    private int itemProductNum;  //订单明细表菜品购买数量
 
-    private Double itemProductPrice;
+    private Double itemProductPrice;  //订单明细表该菜品价格小计
 
     public int getId() {
         return id;
@@ -19,19 +20,19 @@ public class Item {
         this.id = id;
     }
 
-    public long getItemOrderid() {
-        return itemOrderid;
+    public String getItemOrderId() {
+        return itemOrderId;
     }
 
-    public void setItemOrderid(long itemOrderid) {
-        this.itemOrderid = itemOrderid;
+    public void setItemOrderId(String itemOrderId) {
+        this.itemOrderId = itemOrderId;
     }
 
-    public long getItemProductId() {
+    public String getItemProductId() {
         return itemProductId;
     }
 
-    public void setItemProductId(long itemProductId) {
+    public void setItemProductId(String itemProductId) {
         this.itemProductId = itemProductId;
     }
 

@@ -8,9 +8,9 @@ public class Car {
 
     private String carId;
 
-    private long carBuyerId;
+    private String carBuyerId;
 
-    private long carProductId;
+    private String carProductId;
 
     private int carProductNum;
 
@@ -35,19 +35,19 @@ public class Car {
     }
 
 
-    public long getCarBuyerId() {
+    public String getCarBuyerId() {
         return carBuyerId;
     }
 
-    public void setCarBuyerId(long carBuyerId) {
+    public void setCarBuyerId(String carBuyerId) {
         this.carBuyerId = carBuyerId;
     }
 
-    public long getCarProductId() {
+    public String getCarProductId() {
         return carProductId;
     }
 
-    public void setCarProductId(long carProductId) {
+    public void setCarProductId(String carProductId) {
         this.carProductId = carProductId;
     }
 

@@ -3,9 +3,9 @@ package banger.action.model;
 public class Address {
     private int id;
 
-    private long addressId;
+    private String addressId;
 
-    private long addressBuyerId;
+    private String addressBuyerId;
 
     private String addressAddress;
 
@@ -19,19 +19,19 @@ public class Address {
         this.id = id;
     }
 
-    public long getAddressId() {
+    public String getAddressId() {
         return addressId;
     }
 
-    public void setAddressId(long addressId) {
+    public void setAddressId(String addressId) {
         this.addressId = addressId;
     }
 
-    public long getAddressBuyerId() {
+    public String getAddressBuyerId() {
         return addressBuyerId;
     }
 
-    public void setAddressBuyerId(long addressBuyerId) {
+    public void setAddressBuyerId(String addressBuyerId) {
         this.addressBuyerId = addressBuyerId;
     }
 
