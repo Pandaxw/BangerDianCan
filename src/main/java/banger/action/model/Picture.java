@@ -3,9 +3,9 @@ package banger.action.model;
 public class Picture {
     private int id;
     
-    private long productId;
+    private String productId;
     
-    private int pictureId;
+    private String pictureId;
 
     private String pictureAddress;
 
@@ -17,19 +17,19 @@ public class Picture {
         this.id = id;
     }
 
-    public long getProductId() {
+    public String getProductId() {
 		return productId;
 	}
 
-	public void setProductId(long productId) {
+	public void setProductId(String productId) {
 		this.productId = productId;
 	}
 
-	public int getPictureId() {
+	public String getPictureId() {
         return pictureId;
     }
 
-    public void setPictureId(int pictureId) {
+    public void setPictureId(String pictureId) {
         this.pictureId = pictureId;
     }
 
