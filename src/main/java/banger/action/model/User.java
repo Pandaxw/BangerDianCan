@@ -3,7 +3,7 @@ package banger.action.model;
 public class User {
     private int id;
 
-    private long userId;
+    private String userId;
 
     private String userEmail;
 
@@ -27,11 +27,11 @@ public class User {
         this.id = id;
     }
 
-    public long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
