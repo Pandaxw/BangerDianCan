@@ -1,0 +1,98 @@
+<script type="text/javascript">
+function MM_jumpMenu(targ,selObj,restore){ //v3.0
+  eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
+  if (restore) selObj.selectedIndex=0;
+}
+$(document).ready(function(){
+	$(".foot-tab ul li a").each(function(){
+		$(".foot-tab ul li a").click(function(){
+			$(this).addClass("foot-tab-active").css("color"," #F60")
+			$(this).removeClass("foot-tab-hover")
+			$(this).parent("li").siblings().children().addClass("foot-tab-hover").css("color","#000")
+			$(this).parent("li").siblings().children().removeClass("foot-tab-active")
+		 });
+	 	$(".foot-tab-hover1").click(function(){
+			$(this).parent().next().children().addClass("foot-tab-active").css("color"," #F60")
+			$(this).parent().next().children().removeClass("foot-tab-hover")
+			$(this).parent().next().siblings().children().addClass("foot-tab-hover").css("color","#000")
+			$(this).parent().next().siblings().children().removeClass("foot-tab-active")
+		});
+		$(".foot-tab-hover2").click(function(){
+			$(this).parent().prev().children().addClass("foot-tab-active").css("color"," #F60")
+			$(this).parent().prev().children().removeClass("foot-tab-hover")
+			$(this).parent().prev().siblings().children().addClass("foot-tab-hover").css("color","#000")
+			$(this).parent().prev().siblings().children().removeClass("foot-tab-active")
+		});
+	});
+});
+</script>
+<div style="border-top:1px #999 solid;"></div>
+<div class="content"  style=" border-top:none;">
+    <div class="menu-content">
+    	<table>
+        	<tr>
+            	<td>商品名字</td>
+                <td>地址</td>
+                <td>交易状态</td>
+                <td>交易操作</td>
+            </tr>
+        </table>
+    <div  class="tips-button">
+        <select name="choose" style="margin-left:860px; width:125px;">
+              <option>全部订单</option>
+              <option>待付款</option>
+              <option>待配送</option>
+              <option>已配送</option>
+              <option>已完成</option>
+              <option>待取消</option>
+              <option>已取消</option>
+        </select>
+    </div>
+    <table>
+        	<tr >
+                <td style="width:70px;"><input type="checkbox" class="col2"/></td>
+            	<td><a href="Order details.html" >你好我是单号</a></td>
+                <td>地址：<em>xxxxxxxx</em></td>
+                <td>待付款</td>
+                <td><button>退回订单</button></td>
+            </tr>
+        	<tr >
+                <td  style="width:70px;"><input type="checkbox"  class="col"/></td>
+            	<td><a href="Order details.html">你好我是单号</a></td>
+                <td>地址：<em>xxxxxxxx</em></td>
+                <td>已付款</td>
+                <td><button>现在发货</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button>退回订单</button></td>
+            </tr>
+               <tr >
+                <td style="width:70px;"><input type="checkbox" class="col2"/></td>
+            	<td><a href="Order details.html" >你好我是单号</a></td>
+                <td>地址：<em>xxxxxxx</em></td>
+                <td>已发货</td>
+                <td><button>买家已收货</button>&nbsp;&nbsp;<button>买家未收货</button></td>
+            </tr>
+        	<tr >
+                <td style="width:70px;"><input type="checkbox"  class="col2"/></td>
+            	<td><a href="Order details.html">你好我是单号</a></td>
+                <td>地址：<em>xxxxxxxx</em></td>
+                <td>交易成功</td>
+                <td><button>评价</button></td>
+            </tr>
+        </table> 
+      </div>    
+    <div style="width:990px;">
+     <div class="foot-tab">
+          <ul>
+            <span><a  class="foot-tab-hover1" href="#" style="width:57px;">首页</a></span>
+            <li><a  class="foot-tab-active" style="color: #F60;" href="#">1</a></li>
+            <li><a  class="foot-tab-hover" href="#">2</a></li>
+            <li><a  class="foot-tab-hover" href="#">3</a></li>
+            <li><a  class="foot-tab-hover" href="#">4</a></li>
+            <li><a  class="foot-tab-hover" href="#">5</a></li>
+            <span><a  class="foot-tab-hover2" href="#" style="width:57px;">尾页</a></span>
+          </ul>
+                    <inputname="" type="text"  style=" margin:13px;width:23px;"  onkeyup="this.value=this.value.replace(/\D/g,'')" value="1"/>
+                    <input  style="padding:0;" name="提交"  type="submit"  value="跳转" />
+    </div>   
+    </div>  
+</div>
+
