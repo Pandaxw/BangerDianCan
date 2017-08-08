@@ -19,8 +19,6 @@ public class Product {
 
     private String productDescription;
 
-    private int productPictureId;
-
     private int productHassSelled;
 
     public int getId() {
@@ -93,14 +91,6 @@ public class Product {
 
     public void setProductDescription(String productDescription) {
         this.productDescription = productDescription == null ? null : productDescription.trim();
-    }
-
-    public int getProductPictureId() {
-        return productPictureId;
-    }
-
-    public void setProductPictureId(int productPictureId) {
-        this.productPictureId = productPictureId;
     }
 
     public int getProductHassSelled() {
