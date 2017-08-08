@@ -5,8 +5,6 @@ public class Product {
 
     private long productId;
 
-    private String productNo;
-
     private String productName;
 
     private long productSellerId;
@@ -39,14 +37,6 @@ public class Product {
 
     public void setProductId(long productId) {
         this.productId = productId;
-    }
-
-    public String getProductNo() {
-        return productNo;
-    }
-
-    public void setProductNo(String productNo) {
-        this.productNo = productNo == null ? null : productNo.trim();
     }
 
     public String getProductName() {
@@ -119,23 +109,5 @@ public class Product {
 
     public void setProductHassSelled(int productHassSelled) {
         this.productHassSelled = productHassSelled;
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", productId=" + productId +
-                ", productNo='" + productNo + '\'' +
-                ", productName='" + productName + '\'' +
-                ", productSellerId=" + productSellerId +
-                ", productPrice=" + productPrice +
-                ", productStock=" + productStock +
-                ", productTaste=" + productTaste +
-                ", productIsSell=" + productIsSell +
-                ", productDescription='" + productDescription + '\'' +
-                ", productPictureId=" + productPictureId +
-                ", productHassSelled=" + productHassSelled +
-                '}';
     }
 }
