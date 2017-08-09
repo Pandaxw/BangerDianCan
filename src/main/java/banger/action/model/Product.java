@@ -100,4 +100,20 @@ public class Product {
     public void setProductHassSelled(int productHassSelled) {
         this.productHassSelled = productHassSelled;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", productId='" + productId + '\'' +
+                ", productName='" + productName + '\'' +
+                ", productSellerId=" + productSellerId +
+                ", productPrice=" + productPrice +
+                ", productStock=" + productStock +
+                ", productTaste=" + productTaste +
+                ", productIsSell=" + productIsSell +
+                ", productDescription='" + productDescription + '\'' +
+                ", productHassSelled=" + productHassSelled +
+                '}';
+    }
 }

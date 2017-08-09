@@ -20,7 +20,7 @@ $(document).ready(function(){
 		$(".foot-tab-hover2").click(function(){
 			$(this).parent().prev().children().addClass("foot-tab-active").css("color"," #F60")
 			$(this).parent().prev().children().removeClass("foot-tab-hover")
-			$(this).parent().prev().siblings().children().addClass("foot-tab-hover").css("color","#000")
+			$(this).parent().p2rev().siblings().children().addClass("foot-tab-hover").css("color","#000")
 			$(this).parent().prev().siblings().children().removeClass("foot-tab-active")
 		});
 	});

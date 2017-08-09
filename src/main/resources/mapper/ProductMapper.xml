@@ -18,8 +18,8 @@
     <select id="seclctAllProduct" resultMap="ProductMap">
      select * from product
     </select>
-    <select id="getProductOrderbyHassselled" resultMap="ProductMap">
-      SELECT  * FROM product where 0 = 0 order by #{order} desc
+    <select id="getProductOrderbyHassselled" resultType="Product">
+      SELECT  * FROM product order by #{order} desc
     </select>
     <select id="getProductByBetween" resultMap="ProductMap">
         SELECT  * FROM product where product_price between #{0} and  #{1}
