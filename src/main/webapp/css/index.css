@@ -253,7 +253,7 @@ body {
     height: 40px;
     overflow: hidden;
     width: 100px;
-    background: url(../img/search.png) no-repeat 0 -1px;
+    /*background: url(../img/search.png) no-repeat 0 -1px;*/
     border: none;
     vertical-align: top;
 }
@@ -280,7 +280,7 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    width: 190px;
+    width: 260px;
 }
 
 .col_item p.col_tit {

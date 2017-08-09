@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Welcome to china</title>
 <script type="text/javascript">
-	window.location.href="bs/login";  
+	window.location.href="index";
 </script>
 </head>
 <body>

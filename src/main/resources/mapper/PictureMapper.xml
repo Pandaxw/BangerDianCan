@@ -3,7 +3,13 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="banger.action.dao.PictureDAO">
-
-
+    <resultMap id="pictureMap" type="banger.action.model.Picture" >
+        <result column="product_id" property="productId"  />
+        <result column="picture_id" property="pictureId" />
+        <result column="picture_address" property="pictureAddress" />
+    </resultMap>
+    <select id="selectprctureByproductId" resultMap="pictureMap">
+        SELECT  * FROM picture WHERE product_id = #{0}
+    </select>
 
 </mapper>
