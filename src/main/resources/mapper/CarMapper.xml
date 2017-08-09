@@ -5,9 +5,9 @@
 <mapper namespace="banger.action.dao.CarDAO">
     <resultMap id="BaseResultMap" type="banger.action.model.Car" >
         <id column="Id" property="id" jdbcType="INTEGER" />
-        <result column="car_id" property="carId" jdbcType="BIGINT" />
-        <result column="car_buyer_id" property="carBuyerId" jdbcType="BIGINT" />
-        <result column="car_product_id" property="carProductId" jdbcType="BIGINT" />
+        <result column="car_id" property="carId" jdbcType="VARCHAR" />
+        <result column="car_buyer_id" property="carBuyerId" jdbcType="VARCHAR" />
+        <result column="car_product_id" property="carProductId" jdbcType="VARCHAR" />
         <result column="car_product_num" property="carProductNum" jdbcType="INTEGER" />
         <result column="car_product_price" property="carProductPrice" jdbcType="DOUBLE" />
         <result column="car_status" property="carStatus" jdbcType="INTEGER" />
@@ -19,34 +19,39 @@
         insert into car (Id, car_id, car_buyer_id,
         car_product_id, car_product_num, car_product_price,
         car_status)
-        values (#{id,jdbcType=INTEGER}, #{carId,jdbcType=BIGINT}, #{carBuyerId,jdbcType=BIGINT},
-        #{carProductId,jdbcType=BIGINT}, #{carProductNum,jdbcType=INTEGER}, #{carProductPrice,jdbcType=DOUBLE},
-        #{carStatus,jdbcType=INTEGER})
+        values (#{id,jdbcType=INTEGER}, #{carId,jdbcType=VARCHAR}, #{carBuyerId,jdbcType=VARCHAR},
+      #{carProductId,jdbcType=VARCHAR}, #{carProductNum,jdbcType=INTEGER}, #{carProductPrice,jdbcType=DOUBLE},
+      #{carStatus,jdbcType=INTEGER})
     </insert>
-    <update id="updateNum" parameterType="banger.action.model.Car" >
+    <update id="updateNum"  >
         update car
         set
         car_product_num = #{carProductNum,jdbcType=INTEGER},
         car_product_price = #{carProductPrice,jdbcType=DOUBLE}
-        where  car_product_id = #{carProductId,jdbcType=BIGINT}  and car_buyer_id = #{carBuyerId,jdbcType=BIGINT}
+        where  car_product_id = #{carProductId,jdbcType=VARCHAR}  and car_buyer_id = #{carBuyerId,jdbcType=VARCHAR}
     </update>
     <update id="deleteProduct" parameterType="banger.action.model.Car" >
         update car
         set
         car_status = #{carStatus,jdbcType=INTEGER}
-        where  car_product_id = #{carProductId,jdbcType=BIGINT}  and car_buyer_id = #{carBuyerId,jdbcType=BIGINT}
+        where  car_product_id = #{carProductId,jdbcType=VARCHAR}  and car_buyer_id = #{carBuyerId,jdbcType=VARCHAR}
     </update>
     <update id="deleteAllProduct" parameterType="banger.action.model.Car" >
         update car
         set
         car_status = #{carStatus,jdbcType=INTEGER}
-        where   car_buyer_id = #{carBuyerId,jdbcType=BIGINT}
+        where   car_buyer_id = #{carBuyerId,jdbcType=VARCHAR}
     </update>
     <select id="selectUserCar" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
         select
         <include refid="Base_Column_List" />
         from car
-        where car_buyer_id = #{carBuyerId,jdbcType=BIGINT} and  car_status = #{carStatus,jdbcType=INTEGER}
+        where car_buyer_id = #{carBuyerId,jdbcType=VARCHAR} and  car_status = #{carStatus,jdbcType=INTEGER}
     </select>
-
+    <select id="selectCarproduct" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from car
+        where car_buyer_id = #{carBuyerId,jdbcType=VARCHAR} and  car_status = #{carStatus,jdbcType=INTEGER} and car_product_id = #{carProductId,jdbcType=VARCHAR}
+    </select>
 </mapper>

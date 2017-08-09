@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <style type="text/css">
+        #tips{*position:absolute;top:60px; right:20px; position:fixed; /* 固定位置 */
+            top:expression(eval(document.documentElement.scrollTop)); }
+        a{ cursor: default;}
+        #shop{ display:none;background:#ededed; border-top: 1px #dbdbdb solid; width:280px;}
+        #shop-msg{width:280px; height:10px; background:#eaeaea; padding-top:4px;}
+        #shop-msg span{display:block; background:url(img/T1v9DmFfdaXXcgPo_S-300-360.png) 0 -307px; width:9px; height:5px; margin:auto;}
+        #shop-logo{ position:relative;width:260px; height:30px; background: url(img/T1v9DmFfdaXXcgPo_S-300-360.png) 0px -48px; padding-right:20px;}
+        #shop-logo em{ float: right; font-style:normal;display:inline-block; color:#8E0C01; font-size:11px; text-align:center;line-height:30px;height:30px;}
+        #shop-a{ position: absolute; top:0; cursor: pointer ; display:inline-block; font-size:12px; color:#fff; background: url(img/T1v9DmFfdaXXcgPo_S-300-360.png) right -157px;width:98px; height:28px; line-height:28px; padding-left:10px; border:1px #DA3103 solid;}
+        .em{background:url(img/T1v9DmFfdaXXcgPo_S-300-360.png) 0 -132px; width:36px;  padding-left:20px;}
+        ul{list-style:none; margin:0; padding:0;}
+        table{border-collapse: collapse;}
+        .tr1{background:#DBEAF9;font-size:13px; border:none; text-align:center;}
+        .tr1-text{width:22px; height:12px; text-align:center;}
+        .tr2{font-size:13px;text-align:center;}
+        .tr2 a{table-layout:fixed; white-space:nowrap; overflow:hidden;}
+        .reducenum{margin-right: 5px;}
+        .addnum{margin-right: 5px;}
+        .changenum{font-size: 15px;font-weight: 500;}
+    </style>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        function sub() {
+            var json={productid:2,}
+            $.ajax({
+                type: "POST",
+                url: "/Car/addTocar",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(json),
+                dataType: "json",
+                success: function (message) {
+                    if (message > 0) {
+                        alert("请求已提交！我们会尽快与您取得联系");
+                    }
+                     },
+                    error: function (message) {
+                       alert("提交数据失败！");
+                     }
+                 });
+             }
+        function updata() {
+            var json= {productid:2,productnum:3,};
+            $.ajax({
+                type: "POST",
+                url: "/Car/updataMycar",
+                contentType: "application/json; charset=utf-8",
+                data:JSON.stringify(json),
+                dataType: "json",
+                success: function (message) {
+                    if (message > 0) {
+                        alert("请求已提交！我们会尽快与您取得联系");
+                        alert("0"+message);
+                    }
+                },
+                error: function (message) {
+                    alert("提交数据失败！");
+                }
+            });
+        }
+
+
+        function da(e) {
+            $("."+e).remove();
+        }
+
+        function reducenum(e){
+            var a=e.id;
+            var pid=a.substring(2,a.length);
+            var   numid ='num'+pid;
+            var num=$('#'+numid).val();
+            if(num==1){
+                da(pid);
+            }else if(num>1){
+                $('#'+numid).val(num-1);
+            }
+            var prid="pr"+pid;
+            var price=5;
+            var newp=price*(num-1);
+            $("#"+prid).text("￥"+newp);
+            updata();
+        }
+        function addnum(e){
+            var a=e.id;
+            var pid=a.substring(3,a.length);
+            var  numid ='num'+pid;
+            var num=$('#'+numid).val();
+            $('#'+numid).val(num-1+2);
+            var prid="pr"+pid;
+            var price=5;
+            var newp=price*(num-1+2);
+            $("#"+prid).text("￥"+newp);
+            updata();
+        }
+        function  changenum(e) {
+            var a=e.id;
+            var pid=a.substring(3,a.length);
+            var num=e.val();
+            var price=3.6;
+            var prid='pr'+pid;
+
+
+        }
+        $(document).ready(function(){
+            $(".add").click(function(){
+                var pid=1;
+                var pname="杭州酱鸭";
+                var pnum=1;
+                var price=2.3;
+                var t="<tr class="+pid+" id='ter'> <td><a >"+pname+"</a></td> <td><a onclick='reducenum(this)' class='changenum' id="+'re'+pid+">-</a><input  class='tr1-text' id="+'num'+pid+" value="+pnum+" type='text' onchange='changenum(this)' onkeyup='this.value=this.value.replace(/\D/g,'')'/><a onclick='addnum(this)' class='changenum' id="+'add'+pid+">+</a></td> <td><em id="+'pr'+pid+">￥"+price*pnum+"</em></td> <td id="+pid+" onclick='da(this.id)' style='background: url(img/PUSS.jpg) no-repeat center;'></td> </tr>";
+                $("#shoptable tbody").append(t);
+                sub();
+            });
+
+            $("#shop-logo").click(function(){
+                $("#shop").add("#shop-msg").slideToggle()
+            });
+
+            $("#shoptable").on('keyup','.tr1-text',function () {
+                var va=$(this).val();
+                $(this).val(va.replace(/\D|^0/g,''));
+            });
+
+        });
+    </script>
+    <title>购物车</title>
+</head>
+<body>
+<div>
+    <p class="add" id="1">111</p>
+    <p class="add" id="2">112</p>
+    <p class="add" id="3">113</p>
+    <p class="add" id="4">114</p><p>111</p><p>111</p><p>111</p>
+    <p class="add" id="5">115</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p>
+</div>
+<div id="tips">
+    <div id="shop-logo">
+        <em  class="em">购物车</em>
+    </div>
+    <div id="shop-a">去购物车结账</div>
+    <div id="shop-msg" >
+        <span></span>
+    </div>
+    <div  id="shop">
+        <table id="shoptable">
+            <colgroup>
+                <col width="110" />
+                <col width="80"/>
+                <col width="50"/>
+                <col width="70" />
+            </colgroup>
+            <tr>
+                <th>商品</th>
+                <th>数量</th>
+                <th>小计</th>
+                <th>操作</th>
+            </tr>
+
+        </table>
+    </div>
+</div>
+<script src="/jQuery/jquery.easing.1.3.js"></script>
+</body>
+</html>
