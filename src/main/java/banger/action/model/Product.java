@@ -3,11 +3,11 @@ package banger.action.model;
 public class Product {
     private int id;
 
-    private long productId;
+    private String productId;
 
     private String productName;
 
-    private long productSellerId;
+    private String productSellerId;
 
     private double productPrice;
 
@@ -29,11 +29,11 @@ public class Product {
         this.id = id;
     }
 
-    public long getProductId() {
+    public String getProductId() {
         return productId;
     }
 
-    public void setProductId(long productId) {
+    public void setProductId(String productId) {
         this.productId = productId;
     }
 
@@ -45,11 +45,11 @@ public class Product {
         this.productName = productName == null ? null : productName.trim();
     }
 
-    public long getProductSellerId() {
+    public String getProductSellerId() {
         return productSellerId;
     }
 
-    public void setProductSellerId(long productSellerId) {
+    public void setProductSellerId(String productSellerId) {
         this.productSellerId = productSellerId;
     }
 

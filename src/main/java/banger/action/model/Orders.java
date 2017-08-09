@@ -8,11 +8,11 @@ import java.util.Date;
 public class Orders {
     private int id;
 
-    private long ordersId;           //订单Id
+    private String ordersId;           //订单Id
 
-    private long ordersBuyerId;      //买家Id
+    private String ordersBuyerId;      //买家Id
 
-    private long ordersSellerId;     //卖家Id
+    private String ordersSellerId;     //卖家Id
 
     private String ordersAddress;    //订单地址
 
@@ -38,27 +38,27 @@ public class Orders {
         this.id = id;
     }
 
-    public long getOrdersId() {
+    public String getOrdersId() {
         return ordersId;
     }
 
-    public void setOrdersId(long ordersId) {
+    public void setOrdersId(String ordersId) {
         this.ordersId = ordersId;
     }
 
-    public long getOrdersBuyerId() {
+    public String getOrdersBuyerId() {
         return ordersBuyerId;
     }
 
-    public void setOrdersBuyerId(long ordersBuyerId) {
+    public void setOrdersBuyerId(String ordersBuyerId) {
         this.ordersBuyerId = ordersBuyerId;
     }
 
-    public long getOrdersSellerId() {
+    public String getOrdersSellerId() {
         return ordersSellerId;
     }
 
-    public void setOrdersSellerId(long ordersSellerId) {
+    public void setOrdersSellerId(String ordersSellerId) {
         this.ordersSellerId = ordersSellerId;
     }
 
