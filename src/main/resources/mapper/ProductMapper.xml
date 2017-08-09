@@ -3,11 +3,32 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="banger.action.dao.ProductDAO">
-
-    <select id="seclctAllProduct" resultType="Product">
+    <resultMap id="ProductMap" type="banger.action.model.Product" >
+        <id column="Id" property="id" jdbcType="INTEGER" />
+        <result column="product_id" property="productId" jdbcType="VARCHAR" />
+        <result column="product_name" property="productName" jdbcType="VARCHAR" />
+        <result column="product_seller_id" property="productSellerId" jdbcType="INTEGER" />
+        <result column="product_price" property="productPrice" jdbcType="DOUBLE" />
+        <result column="product_stock" property="productStock" jdbcType="INTEGER" />
+        <result column="product_taste" property="productTaste" jdbcType="INTEGER" />
+        <result column="product_is_sell" property="productIsSell" jdbcType="INTEGER" />
+        <result column="product_description" property="productDescription" jdbcType="VARCHAR" />
+        <result column="product_hass_selled" property="productHassSelled" jdbcType="INTEGER" />
+    </resultMap>
+    <select id="seclctAllProduct" resultMap="ProductMap">
      select * from product
     </select>
-
-
+    <select id="getProductOrderbyHassselled" resultMap="ProductMap">
+      SELECT  * FROM product where 0 = 0 order by #{order} desc
+    </select>
+    <select id="getProductByBetween" resultMap="ProductMap">
+        SELECT  * FROM product where product_price between #{0} and  #{1}
+    </select>
+    <select id="getProductsByName" resultMap="ProductMap">
+        select * from product WHERE  product_name like  '%${productname}%'
+    </select>
+    <select id="getProductsByid" resultMap="ProductMap">
+        select * from product WHERE product_id = #{0}
+    </select>
 
 </mapper>
