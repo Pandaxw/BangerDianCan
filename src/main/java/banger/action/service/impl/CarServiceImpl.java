@@ -17,14 +17,14 @@ import javax.annotation.Resource;
 @Service
 public class CarServiceImpl implements CarService{
   @Resource
-  CarDAO carDAO;
+  private CarDAO carDAO;
   //add  product to car
   public  void addProduct(HttpSession session, String carProductId){
-    User user=(User) session.getAttribute("user");
-    long userId=user.getUserId();
+  //  User user=(User) session.getAttribute("user");
+//    String userId=user.getUserId();
     String carid = UUID.randomUUID().toString().replace("-", "");
     Car car=new Car();
-    car.setCarBuyerId(userId);
+    car.setCarBuyerId("110");
     car.setCarId(carid);
     car.setCarProductId(carProductId);
     car.setCarProductNum(1);
@@ -35,7 +35,7 @@ public class CarServiceImpl implements CarService{
   public List<ProductNum> myCar(HttpSession session)
   {
     User user=(User) session.getAttribute("user");
-    long userId=user.getUserId();
+    String userId=user.getUserId();
     List<Car> carList=carDAO.selectUserCar(userId,0);
 
     List<ProductNum> productNums=new ArrayList<>();
@@ -48,10 +48,20 @@ public class CarServiceImpl implements CarService{
     }
     return  productNums;
   }
-  public int updateProductNum(HttpSession session,long carProductId,int carProductNum){
+  public int updateProductNum(HttpSession session,String carProductId,int carProductNum){
     User user=(User) session.getAttribute("user");
-    long userId=user.getUserId();
+   // String userId=user.getUserId();
+    String userId="110";
     double price=carProductNum*1.0;
     return carDAO.updateNum(carProductId,carProductNum,price,userId);
+  }
+
+  @Override
+  public Car selectMyproduct(HttpSession session, String carProductId) {
+    User user=(User) session.getAttribute("user");
+    //String userId=user.getUserId();
+    String userId="110";
+    Car car=carDAO.selectCarproduct(carProductId,0,userId);
+    return car;
   }
 }

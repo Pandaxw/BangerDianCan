@@ -27,22 +27,105 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
     <script type="text/javascript">
+        function sub() {
+            var json={productid:2,}
+            $.ajax({
+                type: "POST",
+                url: "/Car/addTocar",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(json),
+                dataType: "json",
+                success: function (message) {
+                    if (message > 0) {
+                        alert("请求已提交！我们会尽快与您取得联系");
+                    }
+                     },
+                    error: function (message) {
+                       alert("提交数据失败！");
+                     }
+                 });
+             }
+        function updata() {
+            var json= {productid:2,productnum:3,};
+            $.ajax({
+                type: "POST",
+                url: "/Car/updataMycar",
+                contentType: "application/json; charset=utf-8",
+                data:JSON.stringify(json),
+                dataType: "json",
+                success: function (message) {
+                    if (message > 0) {
+                        alert("请求已提交！我们会尽快与您取得联系");
+                        alert("0"+message);
+                    }
+                },
+                error: function (message) {
+                    alert("提交数据失败！");
+                }
+            });
+        }
+
+
         function da(e) {
-            $("."+e.id).remove();
+            $("."+e).remove();
+        }
+
+        function reducenum(e){
+            var a=e.id;
+            var pid=a.substring(2,a.length);
+            var   numid ='num'+pid;
+            var num=$('#'+numid).val();
+            if(num==1){
+                da(pid);
+            }else if(num>1){
+                $('#'+numid).val(num-1);
+            }
+            var prid="pr"+pid;
+            var price=5;
+            var newp=price*(num-1);
+            $("#"+prid).text("￥"+newp);
+            updata();
+        }
+        function addnum(e){
+            var a=e.id;
+            var pid=a.substring(3,a.length);
+            var  numid ='num'+pid;
+            var num=$('#'+numid).val();
+            $('#'+numid).val(num-1+2);
+            var prid="pr"+pid;
+            var price=5;
+            var newp=price*(num-1+2);
+            $("#"+prid).text("￥"+newp);
+            updata();
+        }
+        function  changenum(e) {
+            var a=e.id;
+            var pid=a.substring(3,a.length);
+            var num=e.val();
+            var price=3.6;
+            var prid='pr'+pid;
+
+
         }
         $(document).ready(function(){
-
             $(".add").click(function(){
-                var t="<tr class='tdr' id='ter'> <td><a >杭州酱鸭</a></td> <td><a class='changenum reducenum'>-</a><input class='tr1-text'  value='1' type='text' onkeyup='this.value=this.value.replace(/\D/g,'')' /><a class='changenum addnum'>+</a></td> <td><em>25</em></td> <td id='tdr' onclick='da(this)' style='background: url(img/PUSS.jpg) no-repeat center;'></td> </tr>";
+                var pid=1;
+                var pname="杭州酱鸭";
+                var pnum=1;
+                var price=2.3;
+                var t="<tr class="+pid+" id='ter'> <td><a >"+pname+"</a></td> <td><a onclick='reducenum(this)' class='changenum' id="+'re'+pid+">-</a><input  class='tr1-text' id="+'num'+pid+" value="+pnum+" type='text' onchange='changenum(this)' onkeyup='this.value=this.value.replace(/\D/g,'')'/><a onclick='addnum(this)' class='changenum' id="+'add'+pid+">+</a></td> <td><em id="+'pr'+pid+">￥"+price*pnum+"</em></td> <td id="+pid+" onclick='da(this.id)' style='background: url(img/PUSS.jpg) no-repeat center;'></td> </tr>";
                 $("#shoptable tbody").append(t);
-
+                sub();
             });
 
             $("#shop-logo").click(function(){
                 $("#shop").add("#shop-msg").slideToggle()
             });
 
-
+            $("#shoptable").on('keyup','.tr1-text',function () {
+                var va=$(this).val();
+                $(this).val(va.replace(/\D|^0/g,''));
+            });
 
         });
     </script>
@@ -50,11 +133,11 @@
 </head>
 <body>
 <div>
-    <p class="add">111</p>
-    <p class="add">112</p>
-    <p class="add">113</p>
-    <p class="add">114</p><p>111</p><p>111</p><p>111</p>
-    <p class="add">115</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p>
+    <p class="add" id="1">111</p>
+    <p class="add" id="2">112</p>
+    <p class="add" id="3">113</p>
+    <p class="add" id="4">114</p><p>111</p><p>111</p><p>111</p>
+    <p class="add" id="5">115</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p><p>111</p>
 </div>
 <div id="tips">
     <div id="shop-logo">
@@ -83,6 +166,5 @@
     </div>
 </div>
 <script src="/jQuery/jquery.easing.1.3.js"></script>
-<script src="/jQuery/jquery-1.11.3.js"></script>
 </body>
 </html>

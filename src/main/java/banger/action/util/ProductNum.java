@@ -4,13 +4,13 @@ create by yang on 2017.8.7
 a model for  select product and product number
  */
 public class ProductNum {
-    private long productId;
+    private String productId;
     private int carProductNum;
-    public long getProductId() {
+    public String getProductId() {
         return productId;
     }
 
-    public void setProductId(long productId) {
+    public void setProductId(String productId) {
         this.productId = productId;
     }
 
