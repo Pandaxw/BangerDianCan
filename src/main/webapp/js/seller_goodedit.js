@@ -73,6 +73,7 @@ function updateproduct(){
 	var productDescription=$("#productDescription").val();
 	var imglistsrc="";
 	var imglist=$(".imglist");
+	
 	for(var i=0;i<imglist.length;i++){
 		var temp=($(".imglist")[i].src)+","
 		

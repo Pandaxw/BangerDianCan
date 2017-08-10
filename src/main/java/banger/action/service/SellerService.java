@@ -22,4 +22,8 @@ public interface SellerService {
 
 	boolean delproduct(String productId);
 
+	boolean editsIsSell1(String productId);
+	
+	boolean editsIsSell2(String productId);
+
 }

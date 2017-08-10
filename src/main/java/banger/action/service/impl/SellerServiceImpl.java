@@ -92,12 +92,12 @@ public class SellerServiceImpl implements SellerService {
 		String[] imgs = imglistsrc.split(",");
 		String proid = product.getProductId();
 		System.out.println(imgs);
+		
+		delimg = sellDao.deleteimg(proid);
 		for (int i = 0; i < imgs.length; i++) {
 			picture.setPictureAddress(imgs[i].toString());
 			picture.setPictureId(UuidUtil.generateShortUuid());
-			picture.setProductId(proid);
-
-			delimg = sellDao.deleteimg(proid);
+			picture.setProductId(proid);			
 			if (delimg == true) {
 				addimg = sellDao.addimgs(picture);
 			}
@@ -114,13 +114,25 @@ public class SellerServiceImpl implements SellerService {
 	public boolean delproduct(String productId) {
 		// TODO Auto-generated method stub
 		boolean delmsg = sellDao.delpromsg(productId);
-		System.out.println(delmsg+"&&&&&&&&&&&&&&&&&&&&&&&&&&&");
 		if (delmsg == true) {
 			
 			return sellDao.deleteimg(productId);
 		} else {
 			return false;
 		}
+	}
+
+	@Override
+	public boolean editsIsSell1(String proid) {
+		// TODO Auto-generated method stub		
+		return  sellDao.editIsSell1(proid);	
+		
+	}
+	@Override
+	public boolean editsIsSell2(String proid) {
+		// TODO Auto-generated method stub
+		return sellDao.editIsSell2(proid);
+		
 	}
 
 }

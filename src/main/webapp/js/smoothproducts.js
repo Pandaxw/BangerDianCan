@@ -1,7 +1,9 @@
 // Add some markup & set some CSS
 $('.sp-wrap').append('<div class="sp-large"></div><div class="sp-thumbs sp-tb-active"></div>');
 $('.sp-wrap a').appendTo('.sp-thumbs');
-$('.sp-thumbs a:first').addClass('sp-current').clone().removeClass('sp-current').appendTo('.sp-large');
+$('.sp-thumbs a:first').addClass('sp-current');
+$('.sp-thumbs a:first').clone().removeClass('sp-current').appendTo('.sp-large');
+$('.sp-thumbs a:first').addClass('sp-current');
 $('.sp-wrap').css('display', 'inline-block');
 var slideTiming = 300;
 var maxWidth = $('.sp-large img').width();

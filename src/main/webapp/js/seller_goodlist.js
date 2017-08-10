@@ -65,7 +65,9 @@ $('#picupdateform').form({
 function remove(obj){
 	$(obj).parent().remove();
 }
-
+/*
+ * 添加商品
+ */
 function addproduct(){
 	var productName=$("#productName").val();
 	var productPrice=$("#productPrice").val();
@@ -117,12 +119,59 @@ function delproduct(){
       });
 	
 }
+/*
+ * 多选下架
+ */
+
+function downsell(){
+	  var productid ="";
+	  
+      $('input:checkbox[name=checkbox_hfz]:checked').each(function(i){
+    	  productid=$(this).val();
+    	  $.post("seller/editsIsSell1",{"productId":productid},function(data){
+    		  if(data){
+    	   			 var tt=true;
+    	   			  findpartProList(1);
+    	   		  }
+    	  },"json")
+    	  
+      });
+      if(tt==true){
+    	  alert("恭喜你修改成功");
+    	  findpartProList(1);
+     }
+      
+}
+
+/*
+ * 多选上架
+ */
 
 
+function upsell(){
+	 var productid ="";
+     $('input:checkbox[name=checkbox_hfz]:checked').each(function(i){
+   	  productid=$(this).val();
+   	  var tt=false;
+   	  $.post("seller/editsIsSell2",{"productId":productid},function(data){
+   		  if(data){
+   			 var tt=true;
+   			  findpartProList(1);
+   		  }
+   	  },"json")
+   	  
+   	  if(tt){
+   		  alert("恭喜你，修改成功");
+   	  }
+     });
+	
+}
 
-
-
-
-
+function changpage(){
+	var page=$("#pagetext").val();
+	findpartProList(page);
+	
+	
+}
 
 

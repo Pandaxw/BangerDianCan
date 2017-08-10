@@ -606,8 +606,8 @@ body {
 			</table>
 			<div class="tips-button">
 				<input type="checkbox" id="five" style="margin: 0 30px;" /> <label
-					for="five" style="height: 28px; line-height: 28px;">全选</label> <a>下架</a>
-				<a>上架</a> <a href="javascript:delproduct()">删除</a>
+					for="five" style="height: 28px; line-height: 28px;">全选</label> <a href="javascript:downsell()">下架</a>
+				<a href="javascript:upsell()">上架</a> <a href="javascript:delproduct()">删除</a>
 			</div>
 			<table id="menu_table">
 				<!-- <tr class="tr1">
@@ -651,8 +651,9 @@ body {
 						href="javascript:gotoendList()" style="width: 57px;">尾页</a></span>
 				</ul>
 				<input id="pagetext" type="text" value=""
-					style="margin: 13px; width: 23px;" /> <input style="padding: 0;"
-					name="提交" type="submit" value="跳转" />
+					style="margin: 13px; width: 23px;" /> 
+					<input style="padding: 0;"
+					name="tiaozhuan" type="button" onclick="changpage()" value="跳转" />
 			</div>
 		</div>
 	</div>

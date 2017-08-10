@@ -56,7 +56,7 @@ public class SellerHandler {
 		
 	}
 	/*
-	 * 修改商品上架状态
+	 * 修改商品上下架状态
 	 */
 	
 	@RequestMapping("/editIsSell")
@@ -66,6 +66,31 @@ public class SellerHandler {
 		return sellerService.editIsSell(proid);
 	 
 	}
+	
+	/*
+	 * 批量修改商品下架状态
+	 */
+	
+	@RequestMapping("/editsIsSell1")
+	@ResponseBody
+	public boolean editsIsSell1(String productId){
+		
+		return sellerService.editsIsSell1(productId);
+	 
+	}
+	
+	/*
+	 * 批量修改商品上架状态
+	 */
+	
+	@RequestMapping("/editsIsSell2")
+	@ResponseBody
+	public boolean editsIsSell2(String productId){
+		
+		return sellerService.editsIsSell2(productId);
+	 
+	}
+	
 	/*
 	 * 添加商品
 	 */
@@ -126,8 +151,6 @@ public class SellerHandler {
 	@RequestMapping("/editproduct")
 	@ResponseBody
 	public boolean editproduct(Product product,String imglistsrc){
-		
-		System.out.println(product.toString()+imglistsrc+"################");
 		return sellerService.editproduct(product,imglistsrc);	
 	}
 	
