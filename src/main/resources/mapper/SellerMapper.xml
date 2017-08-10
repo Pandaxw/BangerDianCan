@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="banger.action.dao.SellerDAO">
+	
+	<!-- +++++++++++++++++++ 分页开始 ++++++++++++++++++++++++++++++++++++ -->
+	<select id="findProList" parameterType="PaginationBean"
+		resultMap="PaginationBeanMap">
+		select count(1) total, ceil(count(1)/${pageSize}) totalPage,
+		${pageSize} pageSize, ((${currPage}-1)*${pageSize}) startpart ,${sellerId} product_seller_id from product where product_seller_id=${sellerId}
+	</select>
+
+	<!-- 使用嵌套查询的方式，处理分页 -->
+	<resultMap type="PaginationBean" id="PaginationBeanMap">
+		<result column="pageSize" property="pageSize" />
+		<result column="currPage" property="currPage" />
+		<result column="totalPage" property="totalPage" />
+		<result column="product_seller_id" property="sellerId" />
+		<result column="startpart" property="startpart" />
+		<collection property="rows"
+			column="{pageSize=pageSize,sellerId=product_seller_id,startpart=startpart}" ofType="Product"
+			select="getPaginationProduct" />
+	</resultMap>
+
+	<!-- #是采取占位符，$是直接取到值 -->
+	<select id="getPaginationProduct" resultMap="ProductMap">
+		
+		select * from product where product_seller_id=${sellerId}  limit ${startpart},${pageSize}
+
+	</select>
+	
+	
+	<resultMap type="Product" id="ProductMap">
+		<id property="id" column="id" />
+		<result property="productId" column="product_id" />
+		<result property="productName" column="product_name" />
+		<result property="productSellerId" column="product_seller_id" />
+		<result property="productPrice" column="product_price" />
+		<result property="productStock" column="product_stock" />
+		<result property="productTaste" column="product_taste" />
+		<result property="productIsSell" column="product_is_sell" />
+		<result property="productDescription" column="product_description" />
+		<result property="productHassSelled" column="product_hass_selled" />
+	
+	</resultMap>
+
+	<!-- +++++++++++++++++++ 分页结束 ++++++++++++++++++++++++++++++++++++ -->
+	<!-- 查询商品是否上架 -->
+	<select id="findIsSell" parameterType="String" resultType="int">
+		select product_is_sell from product where product_id=#{proid}	
+	</select>
+	<!-- 修改商品上架状态 -->
+	<update id="editIsSell1"  parameterType="String">
+		update product set product_is_sell=1 where product_id=#{proid}
+	</update>
+	
+	<update id="editIsSell2"  parameterType="String">
+		update product set product_is_sell=0 where product_id=#{proid}
+	</update>
+	
+	<!-- 商家添加最新商品 -->
+	<insert id="addproduct" parameterType="Product">
+	insert into product(product_id,product_name,product_seller_id,product_price,product_stock,product_taste,product_is_sell,product_description,product_hass_selled) 
+	values(#{productId},#{productName},#{productSellerId},#{productPrice},#{productStock},#{productTaste},#{productIsSell},#{productDescription},#{productHassSelled})
+	</insert>
+	
+	<!-- 添加图片信息 -->
+	
+	<insert id="addimgs" parameterType="String">
+		insert into picture (product_id,picture_id,picture_address) values(#{productId},#{productId},#{pictureAddress})
+	</insert>
+	
+	<!--查询商品详情,不包括图片  -->
+	<select id="findproductmsg" resultMap="ProductMap" parameterType="String">
+		select * from product where product_id=#{productId}
+	</select>
+	
+	<!--查询商品详情,只包括图片  -->
+	<select id="findproductimg" resultMap="PropicMap" parameterType="String">
+		select * from picture where product_id=#{productId}
+	</select>
+	
+	<resultMap id="PropicMap" type="Picture">
+		<id property="id" column="id" />
+		<result property="productId" column="product_id"/>
+		<result property="pictureId" column="picture_id"/>
+		<result property="pictureAddress" column="picture_address"/>
+	</resultMap>
+	
+	<!-- 更新商品文本信息 -->
+	<update id="editpromsg" parameterType="Product">
+		update product set product_name=#{productName},product_price=#{productPrice},product_stock=#{productStock},
+		product_taste=#{productTaste},product_is_sell=#{productIsSell},product_description=#{productDescription},
+		product_hass_selled=#{productHassSelled} where product_id=#{productId}
+	</update>
+	
+	<!-- 更新商品图片信息，先执行删除，在添加 -->
+	
+	<delete id="deleteimg" parameterType="String">
+		delete from picture where product_id=#{productId}
+	</delete>
+	<!-- 删除商品信息 -->
+	<delete id="delpromsg" parameterType="String">
+		delete from product where product_id=#{productId}
+	</delete>
+	
+	
+	
+	
+</mapper>

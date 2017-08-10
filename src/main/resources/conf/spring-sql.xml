@@ -8,7 +8,10 @@
 
     <!-- 引入jdbc配置文件 -->
     <context:property-placeholder location="classpath:conf/jdbc.properties"/>
-
+ 	
+ 	<!-- 配置归spring容器管理的包 -->
+	<context:component-scan base-package="banger.action" />
+	
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init"
           destroy-method="close">
         <property name="driverClassName" value="${jdbc_driverClassName}"/>
