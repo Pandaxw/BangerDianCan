@@ -42,7 +42,7 @@
         car_status = #{carStatus,jdbcType=INTEGER}
         where   car_buyer_id = #{carBuyerId,jdbcType=VARCHAR}
     </update>
-    <select id="selectUserCar" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    <select id="selectUserCar" resultMap="BaseResultMap" >
         select
         <include refid="Base_Column_List" />
         from car

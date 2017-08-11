@@ -22,7 +22,7 @@ public interface ProductDAO {
      * @return
      */
     Product getProductByid(String productId,RowBounds rowBounds);
-
+    Product selectProductByid(String productId);
     /**
      * 通过商品名字进行模糊查询
      * @param productname

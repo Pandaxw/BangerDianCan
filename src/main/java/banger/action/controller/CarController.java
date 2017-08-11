@@ -1,17 +1,22 @@
 package banger.action.controller;
 import banger.action.model.Car;
 import banger.action.service.CarService;
-import banger.action.util.ProductNum;
 
+
+import banger.action.util.ProductNum;
+import net.sf.json.JSON;
+import net.sf.json.JSONArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
 import javax.annotation.Resource;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,22 +37,28 @@ public class CarController {
     }
     @ResponseBody
     @RequestMapping("/updataMycar")
-    public Object changeCar(@RequestBody Map<String, Object> product,HttpSession session){
+    public void changeCar(@RequestBody Map<String, Object> product,HttpSession session){
         Map<String, Object> resource=product;
         Map<String, Object> result=new HashMap<String, Object>();
         String productid=resource.get("productid").toString();
         int num=Integer.valueOf(resource.get("productnum").toString());
         carService.updateProductNum(session,productid,num);
-        Car car=carService.selectMyproduct(session,productid);
-        result.put("car",car);
-        return  result;
+    }
+    @ResponseBody
+    @RequestMapping("/removeMycar")
+    public void removeProduct(@RequestBody Map<String, Object> product,HttpSession session){
+        Map<String, Object> res=product;
+        String productid=res.get("productid").toString();
+        carService.removeProduct(session,productid);
     }
     @ResponseBody
     @RequestMapping("/selectMycar")
-    public String selectMycar(HttpSession session, Model model){
-        List<ProductNum> productNumList= carService.myCar(session);
-        model.addAttribute(productNumList);
-        return "addCar";
+    public Object selectMycar(HttpSession session){
+        List<ProductNum> carList= new ArrayList<ProductNum>();
+        carList= carService.myCar(session);
+        Map<String, Object> result=new HashMap<>();
+        result.put("carList",carList);
+        return result;
     }
 
 }

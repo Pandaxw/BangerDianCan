@@ -12,4 +12,5 @@ public interface CarService {
     List<ProductNum> myCar(HttpSession session);
     int updateProductNum(HttpSession session,String carProductId,int carProductNum);
     Car selectMyproduct(HttpSession session, String carProductId);
+    int removeProduct(HttpSession session,String carProductId);
 }

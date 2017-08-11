@@ -4,6 +4,7 @@ public class Car {
     //carStatus 加入购物车后默认状态 ： 0
     //          加入购物车后用户操作删除商品  ：1
     //          加入购物车后用户退出登录购物车失效商品 ：2
+    //
     private int id;
 
     private String carId;

@@ -18,6 +18,7 @@ import javax.annotation.Resource;
 public class CarServiceImpl implements CarService{
   @Resource
   private CarDAO carDAO;
+
   //add  product to car
   public  void addProduct(HttpSession session, String carProductId){
   //  User user=(User) session.getAttribute("user");
@@ -32,21 +33,23 @@ public class CarServiceImpl implements CarService{
     car.setCarStatus(0);
     carDAO.insertProduct(car);
   }
-  public List<ProductNum> myCar(HttpSession session)
-  {
-    User user=(User) session.getAttribute("user");
-    String userId=user.getUserId();
-    List<Car> carList=carDAO.selectUserCar(userId,0);
-
-    List<ProductNum> productNums=new ArrayList<>();
-    for(Iterator iter = carList.iterator(); iter.hasNext();){
+  public List<ProductNum> myCar(HttpSession session) {
+//    User user=(User) session.getAttribute("user");
+    //String userId=user.getUserId();
+    String userId="110";
+    List<Car> carList=new ArrayList<>();
+    List<ProductNum> productNumList=new ArrayList<>();
+    carList=carDAO.selectUserCar(userId,0);
+    for(Car car:carList){
       ProductNum productNum=new ProductNum();
-      Car car=(Car)iter.next();
-      productNum.setProductId(car.getCarProductId());
       productNum.setCarProductNum(car.getCarProductNum());
-      productNums.add(productNum);
+      productNum.setProductId(car.getCarProductId());
+      double price=((double)car.getCarProductPrice())/(car.getCarProductNum());
+      productNum.setPrice(price);
+      productNum.setCarProductPrice(car.getCarProductPrice());
+      productNumList.add(productNum);
     }
-    return  productNums;
+    return  productNumList;
   }
   public int updateProductNum(HttpSession session,String carProductId,int carProductNum){
     User user=(User) session.getAttribute("user");
@@ -55,8 +58,13 @@ public class CarServiceImpl implements CarService{
     double price=carProductNum*1.0;
     return carDAO.updateNum(carProductId,carProductNum,price,userId);
   }
+  public int removeProduct(HttpSession session,String carProductId){
+    User user=(User) session.getAttribute("user");
+    // String userId=user.getUserId();
+    String userId="110";
+    return carDAO.deleteProduct(carProductId,1,userId);
+  }
 
-  @Override
   public Car selectMyproduct(HttpSession session, String carProductId) {
     User user=(User) session.getAttribute("user");
     //String userId=user.getUserId();
